@@ -1,60 +1,159 @@
-// Prompt user for countdown time
-var countdownTime = prompt("How many minutes do you want to serve this website?");
-var countdownSeconds = countdownTime * 60;
+// ==UserScript==
+// @name         Google Forms Helper
+// @namespace    https://github.com
+// @version      0.1
+// @description  Aids to solve google forms
+// @author       masturbator
+// @match        https://docs.google.com/forms/*
+// @icon         https://www.gstatic.com/images/branding/product/1x/forms_2020q4_48dp.png
+// @grant        none
+// ==/UserScript==
 
-// Create countdown timer element
-var timerElement = document.createElement('div');
-timerElement.id = 'countdown-timer';
-document.body.appendChild(timerElement);
+(function() {
+    'use strict';
 
-// Add inline CSS styles
-timerElement.style.position = 'fixed';
-timerElement.style.top = '10px';
-timerElement.style.right = '10px';
-timerElement.style.fontSize = '16px';
-timerElement.style.backgroundColor = '#fff';
-timerElement.style.padding = '10px';
-timerElement.style.border = '1px solid #ddd';
-timerElement.style.borderRadius = '5px';
-timerElement.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.1)';
-timerElement.style.zIndex = '9999';
+    const searchURL = "https://google.com/search?q=";
+    const container = document.querySelectorAll(".geS5n");
 
-// Create audio element
-var audio = new Audio('https://cdn.pixabay.com/audio/2021/08/04/audio_c668156e64.mp3');
+    container.forEach((element, index) => {
+        let questionContainer = element.querySelector(".z12JJ");
+        let answersContainer = element.querySelectorAll(".nWQGrd");
+        let options = "";
+        let question = questionContainer.textContent;
 
-// Update timer every second
-var countdownInterval = setInterval(function () {
-    var minutes = Math.floor(countdownSeconds / 60);
-    var seconds = countdownSeconds % 60;
 
-    // Update timer display
-    timerElement.innerHTML = 'Time Remaining: ' + minutes + 'm ' + seconds + 's';
+        answersContainer?.forEach((points) => {
+            options += points.textContent + " \n";
+        });
 
-    // Check if the countdown is less than 3 minutes
-    if (countdownSeconds <= 60) {
-        // Play a sound
-        audio.play();
+        let spanElement = document.createElement("span");
 
-        // Adjust font size and padding dynamically
-        var fontSize = 16 + Math.sin(countdownSeconds * 0.1) * 4; // Adjust the multiplier for speed
-        var padding = 10 + Math.sin(countdownSeconds * 0.1) * 5; // Adjust the multiplier for speed
+        spanElement.innerHTML = `
+    <a href='${searchURL + question + options}' class="searchText" style="text-decoration:none;font-weight:bold;cursor:pointer;">SEARCH</a>
+    &nbsp;&nbsp;&nbsp;
+    <a class="copyText" style="text-decoration:none;font-weight:bold;cursor:pointer;transition:.3s">COPY</a>
+    `;
 
-        timerElement.style.fontSize = fontSize + 'px';
-        timerElement.style.padding = padding + 'px';
-    }
+    questionContainer.appendChild(spanElement);
 
-    // Check if the countdown reached 0
-    if (countdownSeconds <= 0) {
-        clearInterval(countdownInterval);
+    let copyButton = questionContainer.querySelector(".copyText");
 
-        // Stop the audio
-        audio.pause();
-        audio.currentTime = 0;
+    copyButton.addEventListener("click", function () {
+        navigator.clipboard.writeText(question + "\n" + options);
+        copyButton.innerText = "Copied";
 
-        // Remove the timer element
-        document.body.removeChild(timerElement);
-    }
+        setTimeout(function(){
+            copyButton.innerText = "Copy";
+        },5000);
+    });
 
-    // Decrease countdown seconds
-    countdownSeconds--;
-}, 1000);
+    let anotherSpan = document.createElement("span");
+    anotherSpan.innerHTML += `<br><div class="chatAnswer" style="border-radius:8px;padding:8px;background-color:#a29bfe">
+                    <p style="font-weight:bold;">GoogleAI Answer:</p>
+                    <hr style="border: 1px solid black">
+                    <p id="chatGPTAnswer">
+                    Waiting for answer...
+                    </p>
+                    </span>
+                    <br>
+                    </div>`;
+    element.appendChild(anotherSpan);
+});
+
+
+    var a = document.querySelectorAll(".geS5n");
+
+    a.forEach((element)=>{
+        let questionContainer = element.querySelector(".z12JJ");
+        let answersContainer = element.querySelectorAll(".nWQGrd");
+        let options = "";
+        let question = questionContainer.textContent;
+
+
+        answersContainer?.forEach((points) => {
+            options += points.textContent + " \n";
+        });
+
+        fetch("https://generativelanguage.googleapis.com/v1beta3/models/text-bison-001:generateText?key=AIzaSyC_Z67CTkUzwhybPrPexMqxIdvL7F3xhM0", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                prompt: {
+                    text: "Which of the following option is correct for this question?\n" + question.replace("COPY", "").replace("SEARCH", "") + "\n" + options,
+                },
+            }),
+        })
+            .then(response => response.json())
+            .then(data => {
+            element.querySelector("#chatGPTAnswer").innerText = data.candidates[0].output;
+        })
+            .catch(error => {
+            element.querySelector("#chatGPTAnswer").innerText = "Failed to fetch answer.";
+        });
+    })
+
+
+    // Prompt user for countdown timer
+    var countdownTime = prompt("How many minutes do you want to serve this website?");
+    var countdownSeconds = countdownTime * 60;
+
+    // Create countdown timer element
+    var timerElement = document.createElement('div');
+    timerElement.id = 'countdown-timer';
+    document.body.appendChild(timerElement);
+
+    // Add inline CSS styles
+    timerElement.style.position = 'fixed';
+    timerElement.style.top = '10px';
+    timerElement.style.right = '10px';
+    timerElement.style.fontSize = '16px';
+    timerElement.style.backgroundColor = '#fff';
+    timerElement.style.padding = '10px';
+    timerElement.style.border = '1px solid #ddd';
+    timerElement.style.borderRadius = '5px';
+    timerElement.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.1)';
+    timerElement.style.zIndex = '9999';
+
+    // Create audio element
+    var audio = new Audio('https://cdn.pixabay.com/audio/2021/08/04/audio_c668156e64.mp3');
+
+    // Update timer every second
+    var countdownInterval = setInterval(function () {
+        var minutes = Math.floor(countdownSeconds / 60);
+        var seconds = countdownSeconds % 60;
+
+        // Update timer display
+        timerElement.innerHTML = 'Time Remaining: ' + minutes + 'm ' + seconds + 's';
+
+        // Check if the countdown is less than 3 minutes
+        if (countdownSeconds <= 60) {
+            // Play a sound
+            audio.play();
+
+            // Adjust font size and padding dynamically
+            var fontSize = 16 + Math.sin(countdownSeconds * 0.1) * 4; // Adjust the multiplier for speed
+            var padding = 10 + Math.sin(countdownSeconds * 0.1) * 5; // Adjust the multiplier for speed
+
+            timerElement.style.fontSize = fontSize + 'px';
+            timerElement.style.padding = padding + 'px';
+        }
+
+        // Check if the countdown reached 0
+        if (countdownSeconds <= 0) {
+            clearInterval(countdownInterval);
+
+            // Stop the audio
+            audio.pause();
+            audio.currentTime = 0;
+
+            // Remove the timer element
+            document.body.removeChild(timerElement);
+        }
+
+        // Decrease countdown seconds
+        countdownSeconds--;
+    }, 1000);
+
+})();
