@@ -74,7 +74,7 @@
             options += points.textContent + " \n";
         });
 
-        fetch("https://generativelanguage.googleapis.com/v1beta3/models/text-bison-001:generateText?key=AIzaSyC_Z67CTkUzwhybPrPexMqxIdvL7F3xhM0", {
+        fetch("https://generativelanguage.googleapis.com/v1beta3/models/text-bison-001:generateText?key=AIzaSyCWvB0JMPgfzpdK9e3UtfDvSoTzrtDZ7ns", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
