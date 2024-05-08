@@ -42,7 +42,7 @@ If you have any feedback, please reach out to us at <a href="https://bibek10550.
 
 ## Screenshots
 <!-- ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here) -->
-<img src="https://bibek10550.github.io/bibek10550/assets/images/porjects/GoogleFormHelper" alt="GoogleFormHelper"/>
+<img src="https://github.com/bibek10550/bibek10550/blob/main/assets/images/projects/GoogleFormHelper.png" alt="GoogleFormHelper"/>
 
 
 
