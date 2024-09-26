@@ -2,10 +2,10 @@
 <h3 align="center">GoogleFormHelper</h3>
 
 <!-- Profile View Count -->
-<p align="right"> <img src="https://komarev.com/ghpvc/?username=bibek10550GoogleFormHelper&label=Profile%20views&color=0e75b6&style=flat" alt="Bibek Chand Sah (BCS)" /> </p>
+<p align="right"> <img src="https://komarev.com/ghpvc/?username=bibekchandsahGoogleFormHelper&label=Profile%20views&color=0e75b6&style=flat" alt="Bibek Chand Sah (BCS)" /> </p>
 
 ## Website
-<h1>👉🏻 <a href="[https://bibek10550.github.io/bibek/](https://forms.gle/mb7Btvbb5wbskpNy6)">Google Form</a></h1>
+<h1>👉🏻 <a href="[https://bibekchandsah.github.io/bibek/](https://forms.gle/mb7Btvbb5wbskpNy6)">Google Form</a></h1>
 
 ## Features
 - Light/dark mode toggle
@@ -17,20 +17,20 @@
 
 
 ## Feedback
-If you have any feedback, please reach out to us at <a href="https://bibek10550.github.io/bibek10550/feedback.html">Feedback</a>
+If you have any feedback, please reach out to us at <a href="https://bibekchandsah.github.io/bibekchandsah/feedback.html">Feedback</a>
 
 
-- 👨‍💻 All of my projects are available at [bibekchandsah.com.np](https://bibek10550.github.io/bibek10550)
+- 👨‍💻 All of my projects are available at [bibekchandsah.com.np](https://bibekchandsah.github.io/bibekchandsah)
 
-- 📝 I regularly write articles on [bibekchandsah.com.np](https://bibek10550.github.io/bibek10550)
+- 📝 I regularly write articles on [bibekchandsah.com.np](https://bibekchandsah.github.io/bibekchandsah)
 
 - 📫 How to reach me **bibeksha48@gmail.com**
 
-- 📄 Know about my experiences [bibek](https://bibek10550.github.io/bibek)
+- 📄 Know about my experiences [bibek](https://bibekchandsah.github.io/bibek)
 
 ## Authors
 
-- [@bibek](https://www.github.com/bibek10550)
+- [@bibek](https://www.github.com/bibekchandsah)
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
@@ -42,11 +42,11 @@ If you have any feedback, please reach out to us at <a href="https://bibek10550.
 
 ## Screenshots
 <!-- ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here) -->
-<img src="https://github.com/bibek10550/bibek10550/blob/main/assets/images/projects/GoogleFormHelper.png" alt="GoogleFormHelper"/>
+<img src="https://github.com/bibekchandsah/bibekchandsah/blob/main/assets/images/projects/GoogleFormHelper.png" alt="GoogleFormHelper"/>
 
 
 
-<p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=bibek10550&" alt="bibek10550" /></p>
+<p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=bibekchandsah&" alt="bibekchandsah" /></p>
 
 
 
